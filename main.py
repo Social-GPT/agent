@@ -30,7 +30,7 @@ def main():
     print('---------')
     print("\nGenerated topics:\n\n", format_list(topics), "\n\n---------\n\n")
 
-    with open("results/topics.txt", "a") as f:
+    with open("results/topics.txt", "w") as f:
         for topic in topics:
             f.write(topic + "\n")
 
@@ -50,7 +50,7 @@ def main():
         print("Generated ideas:\n\n", format_list(ideas), "\n\n---------\n\n")
 
         for idea in ideas:
-            with open("results/ideas.txt", "w") as f:
+            with open("results/ideas.txt", "a") as f:
                 f.write(idea + "\n")
             idea_prompt = f"Write a tweet for his account that talks about '{idea}'"
             tweet = gpt4(
