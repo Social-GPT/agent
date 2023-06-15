@@ -29,7 +29,7 @@ def main():
     ]
     print("Generated topics:\n", format_list(topics), "\n\n")
 
-    with open("results/topics.txt", "w") as f:
+    with open("results/topics.txt", "a") as f:
         for topic in topics:
             f.write(topic + "\n")
 
