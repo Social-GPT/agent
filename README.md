@@ -63,16 +63,10 @@ After setting up, you can start using Social GPT by running the `main.py` file:
 python main.py
 ```
 
-## Our Philosophy
-
-At Social GPT, we believe in leveraging cutting-edge AI technology to streamline digital marketing efforts and foster effective engagement. We are committed to creating tools that are user-friendly, efficient, and adaptable. Your feedback is valuable to us and helps us improve our offerings.
-
 ## Contribution
 
-Feel free to contribute to this project and help improve it. We are open to suggestions, bug reports, and pull requests. Please follow the contribution guidelines mentioned in the CONTRIBUTING.md file.
+Feel free to contribute to this project and help improve it. We are open to suggestions, bug reports, and pull requests. Please follow the contribution guidelines mentioned in the [CONTRIBUTING.md](https://githum.com/social-gpt/agent/CONTRIBUTING.md) file.
 
 ## License
 
 This project is licensed under the MIT License. Please see the LICENSE file for more details.
-
-With Social GPT, you are not just managing your social media strategy, you are revolutionizing it!
