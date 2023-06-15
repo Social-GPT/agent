@@ -10,14 +10,14 @@ class TopicGenerator:
         self.topic_count = topic_count
 
     def generate_topics(self):
-        prompt = f"Create a list of {self.topic_count} general topics or fields to cover in their social media posts, in the format '- Text of first topic....\n- Text of second...'"
+        prompt = f"Create a list of {self.topic_count} general topics or fields to cover in their social media posts, in the format '- ...\n- ...\n\nNote: avoid any topic that would require up-to-date information'"
         topics = [
             i.replace("- ", "")
             for i in self.gpt3([SystemMessage(content=self.brand_info), HumanMessage(content=prompt)])
             .content.strip()
             .split("\n")
             if len(i) > 2
-        ]
+        ][: self.topic_count]
         print('\n---------')
         print("\nGenerated topics:\n\n", format_list(topics), "\n\n---------\n")
         write_to_file("results/topics.txt", '\n'.join(topics))
