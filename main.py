@@ -27,8 +27,8 @@ def main():
         .split("\n")
         if len(i) > 2
     ]
-    print('---------')
-    print("\nGenerated topics:\n\n", format_list(topics), "\n\n---------\n\n")
+    print('\n---------')
+    print("\nGenerated topics:\n\n", format_list(topics), "\n\n---------\n")
 
     with open("results/topics.txt", "w") as f:
         for topic in topics:
@@ -47,7 +47,7 @@ def main():
             .split("\n")
             if len(i) > 2
         ]
-        print("Generated ideas:\n\n", format_list(ideas), "\n\n---------\n\n")
+        print("Generated ideas:\n\n", format_list(ideas), "\n\n---------\n")
 
         for idea in ideas:
             with open("results/ideas.txt", "a") as f:
@@ -57,7 +57,7 @@ def main():
                 [SystemMessage(content=brand_info), HumanMessage(content=idea_prompt)]
             ).content.strip()
             results.append(tweet)
-            print("Generated tweet:\n\n", tweet, "\n\n---------\n\n")
+            print("Generated tweet:\n\n", tweet, "\n\n---------\n")
             with open("results/tweets.txt", "a") as f:
                 f.write(tweet + "\n")
 
