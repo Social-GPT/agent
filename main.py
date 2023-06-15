@@ -1,12 +1,17 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
+import os
 
+def create_directory(dir: str):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 def format_list(items):
     return "\n".join([f"- {item}" for item in items])
 
 
 def main():
+    create_directory('results')
     topic_count = int(input("Number of topics?\n"))
     ideas_per_topic = int(input("Number of ideas per topic?\n"))
     brand_info = input("Write a description of the brand:\n")
