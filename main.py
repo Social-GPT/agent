@@ -12,9 +12,9 @@ def format_list(items):
 
 def main():
     create_directory('results')
-    topic_count = int(input("Number of topics?\n"))
-    ideas_per_topic = int(input("Number of ideas per topic?\n"))
-    brand_info = input("Write a description of the brand:\n")
+    topic_count = int(input("\nNumber of topics?\n"))
+    ideas_per_topic = int(input("\nNumber of posts per topic?\n"))
+    brand_info = input("\nWrite a description of the brand:\n")
 
     gpt3 = ChatOpenAI(temperature=0.5)
     gpt4 = ChatOpenAI(temperature=0.5, model_name="gpt-4")
@@ -27,7 +27,8 @@ def main():
         .split("\n")
         if len(i) > 2
     ]
-    print("Generated topics:\n", format_list(topics), "\n\n")
+    print('---------')
+    print("\nGenerated topics:\n\n", format_list(topics), "\n\n---------\n\n")
 
     with open("results/topics.txt", "a") as f:
         for topic in topics:
@@ -46,7 +47,7 @@ def main():
             .split("\n")
             if len(i) > 2
         ]
-        print("Generated ideas:\n", format_list(ideas), "\n\n")
+        print("Generated ideas:\n\n", format_list(ideas), "\n\n---------\n\n")
 
         for idea in ideas:
             with open("results/ideas.txt", "w") as f:
@@ -56,7 +57,7 @@ def main():
                 [SystemMessage(content=brand_info), HumanMessage(content=idea_prompt)]
             ).content.strip()
             results.append(tweet)
-            print("Generated tweet: ", tweet, "\n\n")
+            print("Generated tweet:\n\n", tweet, "\n\n---------\n\n")
             with open("results/tweets.txt", "a") as f:
                 f.write(tweet + "\n")
 
