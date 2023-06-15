@@ -17,7 +17,7 @@ def main():
     posts_language = input("\nLanguage of the posts?\n")
     brand_info = input("\nWrite a description of the brand:\n")
 
-    print('\👍🏼 nNice! Started generating...\n')
+    print('\n👍🏼 Nice! Started generating...\n')
 
     topics = TopicGenerator(brand_info, topic_count).generate_topics()
 
@@ -33,7 +33,7 @@ def main():
             if hf_api_token:
                 image_prompt = ImagePromptGenerator(brand_info, idea).generate_prompt()
                 generate_image_with_hf(image_prompt)
-                
+
     print('\n\n✅ Done!')
 
 if __name__ == "__main__":
