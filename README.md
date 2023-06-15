@@ -14,6 +14,7 @@ In an era where social media is a cornerstone of digital marketing, Social GPT a
 - Smart hashtag selection
 - Emojis in the posts
 - Twitter, Facebook and Instagram post creation
+- Write your posts in any language
 
 ## 🗺️ Roadmap
 - Automatic Unsplash image selection
