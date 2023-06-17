@@ -3,14 +3,16 @@ from langchain.schema import HumanMessage, SystemMessage
 from utils import format_list, write_to_file
 
 class TopicGenerator:
-    def __init__(self, brand_info, topic_count):
+    def __init__(self, brand_info, topic_count, prompt_expansion):
         self.gpt3 = ChatOpenAI(temperature=0.5)
         self.gpt4 = ChatOpenAI(temperature=0.5, model_name="gpt-4")
         self.brand_info = brand_info
+        self.prompt_expansion = prompt_expansion
+
         self.topic_count = topic_count
 
     def generate_topics(self):
-        prompt = f"Create a list of {self.topic_count} general topics or fields to cover in their social media posts, in the format '- ...\n- ...\n\nNote: avoid any topic that would require up-to-date information'"
+        prompt = f"Create a list of {self.topic_count} general topics or fields to cover in their social media posts, in the format '- ...\n- ...\n\nNote: avoid any topic that would require up-to-date information'\n\nTake this also into account: {self.prompt_expansion}"
         topics = [
             i.replace("- ", "")
             for i in self.gpt3([SystemMessage(content=self.brand_info), HumanMessage(content=prompt)])
