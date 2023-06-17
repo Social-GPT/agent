@@ -69,4 +69,10 @@ def ask_boolean(message: str, default: bool):
         answer = input(f"{message} (Y/n)\n")
     else:
         answer = input(f"{message} (y/N)\n")
-    return answer.lower() in ["y", "yes"]
+    return answer.lower() in ["y", "yes"] or (default == True and answer == "")
+
+def prepare_directories():
+    create_directory('results')
+    create_directory('cache')
+    ensure_file_created('cache/brands')
+    create_directory('results/images')
