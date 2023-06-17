@@ -63,3 +63,10 @@ def count_files_in_directory(directory):
     except Exception as e:
         print(f"An error occurred: {e}")
         return 0
+
+def ask_boolean(message: str, default: bool):
+    if default == True:
+        answer = input(f"{message} (Y/n)\n")
+    else:
+        answer = input(f"{message} (y/N)\n")
+    return answer.lower() in ["y", "yes"]

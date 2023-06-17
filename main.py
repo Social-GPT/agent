@@ -6,6 +6,7 @@ from generators.facebook_generator import FacebookGenerator
 from generators.instagram_generator import InstagramGenerator
 from generators.image_prompt_generator import ImagePromptGenerator
 from generators.image_generator import generate_image_with_hf
+from utils import ask_boolean
 import os
 
 def main():
@@ -16,6 +17,7 @@ def main():
     ideas_per_topic = int(input("\nNumber of posts per topic?\n"))
     posts_language = input("\nLanguage of the posts?\n")
     brand_info = input("\nWrite a description of the brand:\n")
+    generate_images = ask_boolean("\nUse image generation feature (beta)?", False)
 
     print('\n👍🏼 Nice! Started generating...\n')
 
@@ -29,10 +31,11 @@ def main():
             FacebookGenerator(brand_info, posts_language, idea).generate_post()
             InstagramGenerator(brand_info, posts_language, idea).generate_post()
             
-            hf_api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
-            if hf_api_token:
-                image_prompt = ImagePromptGenerator(brand_info, idea).generate_prompt()
-                generate_image_with_hf(image_prompt)
+            if generate_images:
+                hf_api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
+                if hf_api_token:
+                    image_prompt = ImagePromptGenerator(brand_info, idea).generate_prompt()
+                    generate_image_with_hf(image_prompt)
 
     print('\n\n✅ Done!')
 
