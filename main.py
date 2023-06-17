@@ -6,17 +6,17 @@ from generators.facebook_generator import FacebookGenerator
 from generators.instagram_generator import InstagramGenerator
 from generators.image_prompt_generator import ImagePromptGenerator
 from generators.image_generator import generate_image_with_hf
-from utils import ask_boolean
+from utils import ask_boolean, prepare_directories
+from brands import Brand
 import os
 
 def main():
-    create_directory('results')
-    create_directory('results/images')
+    prepare_directories()
 
     topic_count = int(input("\nNumber of topics?\n"))
     ideas_per_topic = int(input("\nNumber of posts per topic?\n"))
     posts_language = input("\nLanguage of the posts?\n")
-    brand_info = input("\nWrite a description of the brand:\n")
+    brand_info = Brand.request_brand_info()
     generate_images = ask_boolean("\nUse image generation feature (beta)?", False)
 
     print('\n👍🏼 Nice! Started generating...\n')

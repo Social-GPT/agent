@@ -1,3 +1,4 @@
 results/*
+cache/*
 .vscode
 __pycache__
