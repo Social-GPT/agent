@@ -22,6 +22,7 @@ In an era where social media is a cornerstone of digital marketing, Social GPT a
 - 🖼️ Plans to automatically select images from Unsplash
 - 📣 Working on different brand communication styles
 - 🕺 Aspires to incorporate Tiktok, 📌 Pinterest, 💼 LinkedIn, and more
+- 🛜 Search in web for news information and post ideas
 
 
 ## 🛑 Limitations
