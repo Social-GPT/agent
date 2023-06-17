@@ -12,7 +12,7 @@ class FacebookGenerator:
         self.prompt_expansion = prompt_expansion
 
     def generate_post(self):
-        idea_prompt = f"Write a facebook post with 3-6 paragraphs in {self.language} for his account that talks about '{self.idea}'.\n\nNote: avoid including any text which requires up-to-date information, or which mentions a real link or offered product/service\n\nTake this also into account: {self.prompt_expansion}"
+        idea_prompt = f"Write a facebook post with 3-6 paragraphs in {self.language} for his account that talks about '{self.idea}'.\n\nNote: avoid including any text which requires up-to-date information, or which could contain false data, or which could contain false data, or which mentions a real link or offered product/service\n\nTake this also into account: {self.prompt_expansion}"
         post = self.gpt4(
             [SystemMessage(content=self.brand_info), HumanMessage(content=idea_prompt)]
         ).content.strip()
