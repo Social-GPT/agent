@@ -18,5 +18,5 @@ class TweetGenerator:
             [SystemMessage(content=self.brand_info), HumanMessage(content=idea_prompt)]
         ).content.strip()
         print("Generated tweet:\n\n", tweet, "\n\n---------\n")
-        add_item_to_file("results/tweets.txt", tweet)
+        add_item_to_file("results/twitter.txt", tweet)
         return tweet
