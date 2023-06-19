@@ -1,6 +1,18 @@
-# Social GPT
+<p align="center">
+  <a href="https://jema.ai">
+    <img style="max-width: 400px;"  alt="logo" src="https://avatars.githubusercontent.com/u/136657586?s=80&v=4">
+  </a>
+</p>
 
-**Social GPT** is an **Open Source** tool designed to autonomously strategize and execute your social media campaign. Using the advanced capabilities of GPT-3 and GPT-4, this AI-driven solution is tailored to streamline your social media management efforts, allowing for effective and efficient engagement with your audience.
+<h1 align="center">Welcome to Social-GPT</h1>
+<h3 align="center">The Open Source Jasper AI alternative for Social Media</h3>
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT" target="_blank">
+    <img alt="License: MIT License" src="https://img.shields.io/badge/License-MIT License-yellow.svg" />
+  </a>
+</p>
+
+**Social GPT** is an **Open Source** tool designed to **autonomously strategize and execute your social media campaign**. Using the advanced capabilities of GPT-3 and GPT-4, this AI-driven solution is tailored to streamline your social media management efforts, allowing for effective and efficient engagement with your audience.
 
 ## 🤖 Why Social GPT?
 
