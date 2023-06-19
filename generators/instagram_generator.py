@@ -1,6 +1,7 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from utils import add_item_to_file
+from prompts import Prompts
 
 class InstagramGenerator:
     def __init__(self, brand_info, language, idea, prompt_expansion):
@@ -11,7 +12,7 @@ class InstagramGenerator:
         self.prompt_expansion = prompt_expansion
 
     def generate_post(self):
-        idea_prompt = f"Write an Instagram post in {self.language} for his account that talks about '{self.idea}'. \n\nNote: avoid including any text which requires up-to-date information, or which could contain false data, or which mentions a real link or offered product/service"
+        idea_prompt = f"Write an Instagram post in {self.language} for his account that talks about '{self.idea}'{Prompts.get_avoids()}"
         if (self.prompt_expansion != ""):
             prompt = prompt + f"\n\nTake this also into account: {self.prompt_expansion}"
         post = self.gpt3(
