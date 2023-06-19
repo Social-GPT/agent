@@ -8,16 +8,17 @@ In an era where social media is a cornerstone of digital marketing, Social GPT a
 
 ## ✅ Features
 
-- 💡 Offers suggestions according to the provided brand description
-- 📝 Generates a list of topics and formulates ideas for each one
-- 🤖 Creates the body of posts automatically
-- 🖋️ Facilitates post creation for 🐦 Twitter, 📘 Facebook, 📸 Instagram, and 💼 LinkedIn
-- 🎆 Generates images for each post using StableDiffusion
-- 🔍 Selects hashtags intelligently
-- 😊 Incorporates emojis in the posts
-- 🌐 Allows you to write posts in any language
-- 💾 Save multiple brand descriptions
-- 📣 Save a custom communication style for each brand
+- 💡 Offers **suggestions** according to the provided brand description
+- 📝 Generates a **list of topics** and formulates **ideas for each one**
+- 🖋️ Facilitates post creation for 🐦 **Twitter**, 📘 **Facebook**, 📸 **Instagram**, and 💼 **LinkedIn**
+- 🤖 Creates optimized **post bodies** automatically
+- 🎆 Generates **AI Images** for each post using Stable Diffusion
+- 🔍 Selects **hashtags** intelligently
+- 😊 Incorporates **emojis** in the posts
+- 🌐 Allows you to write posts in **any language**
+- 💾 Save multiple **brand descriptions**
+- 📣 Save a custom **communication style** for each brand
+- 🤖 Select expected **quality**: Low (GPT-3: ⚡️), Medium (combination), or High quality (GPT-4: 🐢+💰)
 
 ## 🗺️ Roadmap
 - 🖼️ Plans to automatically select images from Unsplash
@@ -29,45 +30,45 @@ In an era where social media is a cornerstone of digital marketing, Social GPT a
 
 Although Social GPT is a potent tool, it's not a panacea for all social media challenges. It does have some limitations:
 
-- 🔑 It necessitates an API key from OpenAI, which might entail associated costs.
-- 📊 Its performance largely depends on the quality and quantity of data supplied for the brand description.
-- 🧑‍💻 While it's designed to learn and adapt, human supervision is still advisable to guarantee the appropriateness and effectiveness of the content.
+- 🔑 It necessitates an **API key from OpenAI**, which might entail associated costs.
+- 📊 Its **performance** largely **depends on** the quality and quantity of data supplied for the **brand description**.
+- 🧑‍💻 While it's designed to learn and adapt, **human supervision is still advisable** to guarantee the appropriateness and effectiveness of the content.
 
 ## 🙌🏼 Getting Started
 
 To get started with Social GPT, you will need to follow the setup instructions as listed below:
 
-**Prerequisites**
+### Prerequisites
 
-Ensure you have Python 3.6 or later installed on your system. If not, you can download it from [here](https://www.python.org/downloads/).
+Ensure you have **Python** 3.6 or later installed on your system. If not, you can download it from [here](https://www.python.org/downloads/).
 
-**Installation**
+### Installation
 
-1. Clone this repository to your local machine.
+1. **Clone this repository** to your local machine.
 
 ```bash
 git clone https://github.com/social-gpt/agent.git
 ```
 
-2. Navigate to the cloned directory and install the required dependencies by executing the following command:
+2. Navigate to the cloned directory and **install the required dependencies** by executing the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up your OpenAI API key. Make sure to replace `{your-api-key}` with your actual API key.
+3. Set up your **OpenAI API key**. Make sure to replace `{your-api-key}` with your actual API key.
 
 ```bash
 export OPENAI_API_KEY={your-api-key}
 ```
 
-4. If you want Social-GPT to also generate images, set up your HuggingFace API key. Make sure to replace `{your-api-token}` with your actual API key.
+4. If you want Social-GPT to also generate images, set up your **HuggingFace API key**. Make sure to replace `{your-api-token}` with your actual API key.
 
 ```bash
 export HUGGINGFACE_API_TOKEN={your-api-token}
 ```
 
-**Usage**
+### Usage
 
 After setting up, you can start using Social GPT by running the `main.py` file:
 
