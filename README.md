@@ -88,10 +88,15 @@ After setting up, you can start using Social GPT by running the `main.py` file:
 python main.py
 ```
 
-## Contribution
+---
+
+## 🤝 Contributing
 
 Feel free to contribute to this project and help improve it. We are open to suggestions, bug reports, and pull requests. Please follow the contribution guidelines mentioned in the [CONTRIBUTING.md](https://githum.com/social-gpt/agent/CONTRIBUTING.md) file.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License. Please see the LICENSE file for more details.
+
+## 📈 Stats
+<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://star-history.com/embed?secret=Z2l0aHViX3BhdF8xMUFUUFBDNVEwVjVLVDlnUmsxQWVJX0ZWS1VOQ3ltN1gzWHAzd2RrWVBacTVzUm9NSHMydm5wMWFibzZtNER4elREUUZaSExFU0lNT3Zpa21X#Social-GPT/agent&Date" frameBorder="0"></iframe>
