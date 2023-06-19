@@ -11,16 +11,16 @@ In an era where social media is a cornerstone of digital marketing, Social GPT a
 - 💡 Offers suggestions according to the provided brand description
 - 📝 Generates a list of topics and formulates ideas for each one
 - 🤖 Creates the body of posts automatically
-- 🐦 Facilitates post creation for Twitter, 📘 Facebook, 📸 Instagram, and 💼 LinkedIn
+- 🖋️ Facilitates post creation for 🐦 Twitter, 📘 Facebook, 📸 Instagram, and 💼 LinkedIn
 - 🎆 Generates images for each post using StableDiffusion
 - 🔍 Selects hashtags intelligently
 - 😊 Incorporates emojis in the posts
 - 🌐 Allows you to write posts in any language
 - 💾 Save multiple brand descriptions
+- 📣 Save a custom communication style for each brand
 
 ## 🗺️ Roadmap
 - 🖼️ Plans to automatically select images from Unsplash
-- 📣 Working on different brand communication styles
 - 🕺 Aspires to incorporate Tiktok, 📌 Pinterest, and more
 - 🛜 Search in web for news information and post ideas
 
