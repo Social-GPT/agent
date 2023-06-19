@@ -19,7 +19,7 @@ class Brand:
     def create_new_brand():
         name = input("\nWhich is the name of the brand?\n")
         description = input("\nWrite a description for the brand:\n")
-        add_item_to_file("cache/brands", Brand(name, description).to_cache_text())
+        add_item_to_file("cache/brand-descriptions.txt", Brand(name, description).to_cache_text())
         return Brand(name, description)
 
     
@@ -41,7 +41,7 @@ class Brand:
 
     @staticmethod
     def get_cached_brands():
-        with open("cache/brands", 'r') as f:
+        with open("cache/brand-descriptions.txt", 'r') as f:
             brand_texts = []
             last_line = ""
             for line in f:
@@ -53,4 +53,4 @@ class Brand:
         return [Brand.from_cache_text(brand_text) for brand_text in brand_texts]
 
     def save_in_cache(self):
-        add_item_to_file("cache/brands", self.to_cache_text())
+        add_item_to_file("cache/brand-descriptions.txt", self.to_cache_text())

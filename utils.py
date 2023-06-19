@@ -74,5 +74,5 @@ def ask_boolean(message: str, default: bool):
 def prepare_directories():
     create_directory('results')
     create_directory('cache')
-    ensure_file_created('cache/brands')
+    ensure_file_created('cache/brand-descriptions.txt')
     create_directory('results/images')
