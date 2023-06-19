@@ -1,47 +1,48 @@
 from utils import add_item_to_file, ask_boolean
+import inquirer
+from style import writting_style_definitions, default_writting_style_definitions
+from files import Files
 
 class Brand:
 
-    def __init__(self, title, description):
+    def __init__(self, title, description, style):
         self.title = title
         self.description = description
+        self.style = style
 
     @staticmethod
-    def from_cache_text(text):
-        title = text.split(" - ")[0]
-        description = text.split(" - ")[1]
-        return Brand(title, description)
+    def split_file_text(text):
+        title = text.split(" - ")[0].split('. ')[1]
+        content = text.split(" - ")[1]
+        return [title, content]
     
-    def to_cache_text(self):
+    def to_description_cache_text(self):
         return f"{self.title} - {self.description}"
+    
+    def to_style_cache_text(self):
+        return f"{self.title} - {', '.join(self.style)}"
+    
+    @staticmethod
+    def from_title(title: str):
+        brands = Brand.get_cached_brands()
+        for brand in brands:
+            if brand.title == title:
+                return brand
     
     @staticmethod
     def create_new_brand():
-        name = input("\nWhich is the name of the brand?\n")
+        title = input("\nWhich is the name of the brand?\n")
         description = input("\nWrite a description for the brand:\n")
-        add_item_to_file("cache/brand-descriptions.txt", Brand(name, description).to_cache_text())
-        return Brand(name, description)
-
+        print("\n")
+        style = inquirer.prompt([inquirer.Checkbox('style', message="Select the style definitions for this brand", choices=writting_style_definitions, default=default_writting_style_definitions)])['style']
+        brand = Brand(title, description, style)
+        add_item_to_file(Files.brand_descriptions, brand.to_description_cache_text())
+        add_item_to_file(Files.brand_styles, brand.to_style_cache_text())
+        return Brand(title, description, style)
     
     @staticmethod
-    def request_brand_info():
-        cached = Brand.get_cached_brands()
-        if (len(cached) == 0):
-           return  Brand.create_new_brand()
-        else:
-            print("\nSelect a saved brand:")
-            for brand in cached:
-                print(brand.title)
-            print(f"{len(cached)+1}. Write a new brand")
-            option = int(input())
-            if option == len(cached)+1:
-                return Brand.create_new_brand()
-            else:
-                return cached[option-1]
-
-    @staticmethod
-    def get_cached_brands():
-        with open("cache/brand-descriptions.txt", 'r') as f:
+    def parse_brand_file(file: str):
+        with open(file, 'r') as f:
             brand_texts = []
             last_line = ""
             for line in f:
@@ -50,7 +51,40 @@ class Brand:
                     last_line = ""
                 else:
                     last_line += line.strip()
-        return [Brand.from_cache_text(brand_text) for brand_text in brand_texts]
+        mapped_brands = {}
+        for brand_text in brand_texts:
+            [title, content] = Brand.split_file_text(brand_text)
+            mapped_brands[title] = content
+        return mapped_brands
+
+    
+    @staticmethod
+    def request_brand():
+        cached_brands = Brand.get_cached_brands()
+        if (len(cached_brands) == 0):
+           return Brand.create_new_brand()
+        else:
+            print("\n")
+            brands = [brand.title for brand in cached_brands]
+            brands.append("Create new brand")
+            brand = inquirer.prompt([inquirer.List('brand', message="For which brand should I create the posts?", choices=brands)])['brand']
+            if brand == "Create new brand":
+                return Brand.create_new_brand()
+            else:
+                return Brand.from_title(brand)
+
+    @staticmethod
+    def get_cached_brands():
+        descriptions_map = Brand.parse_brand_file(Files.brand_descriptions)
+        styles_map = Brand.parse_brand_file(Files.brand_styles)
+        
+        brands = []
+        for brand in descriptions_map:
+            brand = Brand(brand, descriptions_map[brand], styles_map[brand].split(', '))
+            brands.append(brand)
+        return brands
+
 
     def save_in_cache(self):
-        add_item_to_file("cache/brand-descriptions.txt", self.to_cache_text())
+        add_item_to_file(Files.brand_descriptions, self.to_description_cache_text())
+        add_item_to_file(Files.brand_styles, self.to_style_cache_text())
