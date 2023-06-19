@@ -1,4 +1,5 @@
 import os
+from files import Files
 
 def create_directory(dir: str):
     if not os.path.exists(dir):
@@ -74,5 +75,6 @@ def ask_boolean(message: str, default: bool):
 def prepare_directories():
     create_directory('results')
     create_directory('cache')
-    ensure_file_created('cache/brand-descriptions.txt')
+    ensure_file_created(Files.brand_descriptions)
+    ensure_file_created(Files.brand_styles)
     create_directory('results/images')
