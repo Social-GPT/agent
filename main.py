@@ -4,6 +4,7 @@ from generators.idea_generator import IdeaGenerator
 from generators.tweet_generator import TweetGenerator
 from generators.facebook_generator import FacebookGenerator
 from generators.instagram_generator import InstagramGenerator
+from generators.linkedin_generator import LinkedInGenerator
 from generators.image_prompt_generator import ImagePromptGenerator
 from generators.image_generator import generate_image_with_hf
 from utils import ask_boolean, prepare_directories
@@ -21,7 +22,7 @@ def main():
     topics_ideas_prompt_expansion = input("\nAny specific request about the TOPICS/IDEAS?\n") or ""
     posts_prompt_expansion = input("\nAny specific request about the style or content of the POSTS?\n") or ""
     generate_images = ask_boolean("\nUse image generation feature (beta)?", False)
-    platforms = inquirer.prompt([inquirer.Checkbox('platforms', message="\nWhich platforms do you want to target??", choices=["Instagram", "Facebook", "Twitter"])])['platforms']
+    platforms = inquirer.prompt([inquirer.Checkbox('platforms', message="\nWhich platforms do you want to target??", choices=["Instagram", "Facebook", "Twitter", "LinkedIn"])])['platforms']
 
     print('\n👍🏼 Nice! Started generating...\n')
 
@@ -38,6 +39,8 @@ def main():
                 FacebookGenerator(brand_info, posts_language, idea, posts_prompt_expansion).generate_post()
             if "Instagram" in platforms:
                 InstagramGenerator(brand_info, posts_language, idea, posts_prompt_expansion).generate_post()            
+            if "LinkedIn" in platforms:
+                LinkedInGenerator(brand_info, posts_language, idea, posts_prompt_expansion).generate_post()            
             if generate_images:
                 hf_api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
                 if hf_api_token:
