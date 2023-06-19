@@ -11,6 +11,8 @@ from utils import ask_boolean, prepare_directories
 from brands import Brand
 import os
 import inquirer
+from llm import LLM
+
 
 def main():
     prepare_directories()
@@ -19,39 +21,52 @@ def main():
     topic_count = int(input("\nNumber of topics to generate?\n"))
     ideas_per_topic = int(input("\nNumber of posts per topic?\n"))
     posts_language = input("\nLanguage of the posts?\n")
-    topics_ideas_prompt_expansion = input("\nAny specific request about the TOPICS/IDEAS?\n") or ""
-    posts_prompt_expansion = input("\nAny specific request about the style or content of the POSTS?\n") or ""
-    generate_images = ask_boolean("\nUse image generation feature (beta)?", False)
+    topics_ideas_prompt_expansion = input(
+        "\nAny specific request about the TOPICS/IDEAS?\n") or ""
+    posts_prompt_expansion = input(
+        "\nAny specific request about the style or content of the POSTS?\n") or ""
+    generate_images = ask_boolean(
+        "\nUse image generation feature (beta)?", False)
     print("\n")
-    questions = [inquirer.Checkbox('platforms', message="Which platforms do you want to target?", choices=["Instagram", "Facebook", "Twitter", "LinkedIn"])]
-    platforms = inquirer.prompt(questions)['platforms']
+    platforms = inquirer.prompt([inquirer.Checkbox('platforms', message="Which platforms do you want to target?", choices=[
+        "Instagram", "Facebook", "Twitter", "LinkedIn"])])['platforms']
+
+    mode = LLM.request_generation_mode()
 
     print('\n👍🏼 Nice! Started generating...\n')
 
-    topics = TopicGenerator(brand, topic_count, topics_ideas_prompt_expansion).generate_topics()
-        
+    topics = TopicGenerator(
+        brand, topic_count, topics_ideas_prompt_expansion, mode).generate_topics()
 
     for topic in topics:
-        ideas = IdeaGenerator(brand, ideas_per_topic, topics_ideas_prompt_expansion).generate_ideas(topic)
+        ideas = IdeaGenerator(
+            brand, ideas_per_topic, topics_ideas_prompt_expansion, mode).generate_ideas(topic)
 
         for idea in ideas:
             if "Twitter" in platforms:
-                TweetGenerator(brand, posts_language, idea, posts_prompt_expansion).generate_tweet()
+                TweetGenerator(brand, posts_language, idea,
+                               posts_prompt_expansion, mode).generate_tweet()
             if "Facebook" in platforms:
-                FacebookGenerator(brand, posts_language, idea, posts_prompt_expansion).generate_post()
+                FacebookGenerator(brand, posts_language, idea,
+                                  posts_prompt_expansion, mode).generate_post()
             if "Instagram" in platforms:
-                InstagramGenerator(brand, posts_language, idea, posts_prompt_expansion).generate_post()            
+                InstagramGenerator(brand, posts_language, idea,
+                                   posts_prompt_expansion, mode).generate_post()
             if "LinkedIn" in platforms:
-                LinkedInGenerator(brand, posts_language, idea, posts_prompt_expansion).generate_post()            
+                LinkedInGenerator(brand, posts_language, idea,
+                                  posts_prompt_expansion, mode).generate_post()
             if generate_images:
                 hf_api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
                 if hf_api_token:
-                    image_prompt = ImagePromptGenerator(brand, idea).generate_prompt()
+                    image_prompt = ImagePromptGenerator(
+                        brand, idea, mode).generate_prompt()
                     generate_image_with_hf(image_prompt)
-                else: 
-                    print("🚨 You need to set the HUGGINGFACE_API_TOKEN environment variable to use the image generation feature")
+                else:
+                    print(
+                        "🚨 You need to set the HUGGINGFACE_API_TOKEN environment variable to use the image generation feature")
 
     print('\n\n✅ Done!')
+
 
 if __name__ == "__main__":
     main()

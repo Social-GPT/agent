@@ -5,13 +5,14 @@ from prompts import Prompts
 from files import Files
 from brands import Brand
 from logger import Logger
-from llm import LLM
+from llm import LLM, GenerationMode, GenerationItemType
 
 class IdeaGenerator:
-    def __init__(self, brand: Brand, number_of_ideas: str, prompt_expansion: str):
+    def __init__(self, brand: Brand, number_of_ideas: str, prompt_expansion: str, generation_mode: GenerationMode):
         self.brand = brand
         self.number_of_ideas = number_of_ideas
         self.prompt_expansion = prompt_expansion
+        self.generation_mode = generation_mode
 
     def generate_ideas(self, topic):
         prompt = f"Create a list of {self.number_of_ideas} social media post ideas (concise and specific) for their account about the topic '{topic}' in the format '- ...\n- ...'{Prompts.get_avoids()}"
@@ -20,7 +21,7 @@ class IdeaGenerator:
         ideas = [
             i.replace("- ", "")
             for i in LLM.generate(
-                [SystemMessage(content=self.brand.description), HumanMessage(content=prompt)]
+                [SystemMessage(content=self.brand.description), HumanMessage(content=prompt)], GenerationItemType.IDEAS, self.generation_mode
             )
             .content.strip()
             .split("\n")
