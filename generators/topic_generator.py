@@ -1,12 +1,15 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from utils import format_list, write_to_file
+from brands import Brand
 from prompts import Prompts
+from llm import LLM
+from logger import Logger
+from files import Files
 
 class TopicGenerator:
-    def __init__(self, brand_info, topic_count, prompt_expansion):
-        self.gpt3 = ChatOpenAI(temperature=0.5)
-        self.brand_info = brand_info
+    def __init__(self, brand: Brand, topic_count: str, prompt_expansion: str):
+        self.brand = brand
         self.prompt_expansion = prompt_expansion
 
         self.topic_count = topic_count
@@ -17,12 +20,12 @@ class TopicGenerator:
             prompt = prompt + f"\n\nTake this also into account: {self.prompt_expansion}"
         topics = [
             i.replace("- ", "")
-            for i in self.gpt3([SystemMessage(content=self.brand_info), HumanMessage(content=prompt)])
+            for i in LLM.generate([SystemMessage(content=self.brand.description), HumanMessage(content=prompt)])
             .content.strip()
             .split("\n")
             if len(i) > 2
         ][: self.topic_count]
         print('\n---------')
-        print("\nGenerated topics:\n\n", format_list(topics), "\n\n---------\n")
-        write_to_file("results/topics.txt", '\n'.join(topics))
+        Logger.log("Generated topics", format_list(topics))
+        write_to_file(Files.topic_results, '\n'.join(topics))
         return topics

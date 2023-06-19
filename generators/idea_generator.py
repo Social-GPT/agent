@@ -2,11 +2,14 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from utils import format_list, add_item_to_file
 from prompts import Prompts
+from files import Files
+from brands import Brand
+from logger import Logger
+from llm import LLM
 
 class IdeaGenerator:
-    def __init__(self, brand_info, number_of_ideas, prompt_expansion):
-        self.gpt3 = ChatOpenAI(temperature=0.5)
-        self.brand_info = brand_info
+    def __init__(self, brand: Brand, number_of_ideas: str, prompt_expansion: str):
+        self.brand = brand
         self.number_of_ideas = number_of_ideas
         self.prompt_expansion = prompt_expansion
 
@@ -16,14 +19,14 @@ class IdeaGenerator:
             prompt = prompt + f"\n\nTake this also into account: {self.prompt_expansion}"
         ideas = [
             i.replace("- ", "")
-            for i in self.gpt3(
-                [SystemMessage(content=self.brand_info), HumanMessage(content=prompt)]
+            for i in LLM.generate(
+                [SystemMessage(content=self.brand.description), HumanMessage(content=prompt)]
             )
             .content.strip()
             .split("\n")
             if len(i) > 2
         ][: self.number_of_ideas]
-        print("Generated ideas:\n\n", format_list(ideas), "\n\n---------\n")
+        Logger.log("Generated ideas", format_list(ideas))
         for idea in ideas:
-            add_item_to_file("results/ideas.txt", idea)
+            add_item_to_file(Files.idea_results, idea)
         return ideas

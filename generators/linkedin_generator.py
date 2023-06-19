@@ -2,22 +2,25 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from utils import add_item_to_file
 from prompts import Prompts
+from brands import Brand
+from files import Files
+from logger import Logger
+from llm import LLM
 
 class LinkedInGenerator:
-    def __init__(self, brand_info, language, idea, prompt_expansion):
-        self.gpt3 = ChatOpenAI(temperature=0.5)
-        self.brand_info = brand_info
+    def __init__(self, brand: Brand, language: str, idea: str, prompt_expansion: str):
+        self.brand = brand
         self.language = language
         self.idea = idea
         self.prompt_expansion = prompt_expansion
 
     def generate_post(self):
-        idea_prompt = f"Write a LinkedIn post in {self.language} with 5-8 paragraphs for their account that talks about '{self.idea}'{Prompts.get_avoids()}{Prompts.get_default_style()}"
+        prompt = f"Write a LinkedIn post in {self.language} with 5-8 paragraphs for their account that talks about '{self.idea}'{Prompts.get_avoids()}{Prompts.build_style_prompt(self.brand.style)}"
         if (self.prompt_expansion != ""):
             prompt = prompt + f"\n\nTake this also into account: {self.prompt_expansion}"
-        post = self.gpt3(
-            [SystemMessage(content=self.brand_info), HumanMessage(content=idea_prompt)]
+        post = LLM.generate(
+            [SystemMessage(content=self.brand.description), HumanMessage(content=prompt)]
         ).content.strip()
-        print("Generated LinkedIn Post:\n\n", post, "\n\n---------\n")
-        add_item_to_file("results/linkedin.txt", post)
+        Logger.log("Generated LinkedIn post", post)
+        add_item_to_file(Files.linkedin_results, post)
         return post

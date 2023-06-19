@@ -2,21 +2,25 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from utils import add_item_to_file
 from prompts import Prompts
+from brands import Brand
+from files import Files
+from logger import Logger
+from llm import LLM
+
 class TweetGenerator:
-    def __init__(self, brand_info, language, idea, prompt_expansion):
-        self.gpt3 = ChatOpenAI(temperature=0.5)
-        self.brand_info = brand_info
+    def __init__(self, brand: Brand, language: str, idea: str, prompt_expansion: str):
+        self.brand = brand
         self.language = language
         self.idea = idea
         self.prompt_expansion = prompt_expansion
 
     def generate_tweet(self):
-        idea_prompt = f"Write a tweet in {self.language} for their account that talks about '{self.idea}'{Prompts.get_avoids()}{Prompts.get_default_style()}"
+        prompt = f"Write a Tweet in {self.language} for their account that talks about '{self.idea}'{Prompts.get_avoids()}{Prompts.build_style_prompt(self.brand.style)}"
         if (self.prompt_expansion != ""):
             prompt = prompt + f"\n\nTake this also into account: {self.prompt_expansion}"
-        tweet = self.gpt3(
-            [SystemMessage(content=self.brand_info), HumanMessage(content=idea_prompt)]
+        tweet = LLM.generate(
+            [SystemMessage(content=self.brand.description), HumanMessage(content=prompt)]
         ).content.strip()
-        print("Generated tweet:\n\n", tweet, "\n\n---------\n")
-        add_item_to_file("results/twitter.txt", tweet)
+        Logger.log("Generated Tweet", tweet)
+        add_item_to_file(Files.twitter_results, tweet)
         return tweet
