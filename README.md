@@ -98,5 +98,6 @@ Feel free to contribute to this project and help improve it. We are open to sugg
 
 This project is licensed under the MIT License. Please see the LICENSE file for more details.
 
-## 📈 Stats
-<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://star-history.com/embed?secret=Z2l0aHViX3BhdF8xMUFUUFBDNVEwVjVLVDlnUmsxQWVJX0ZWS1VOQ3ltN1gzWHAzd2RrWVBacTVzUm9NSHMydm5wMWFibzZtNER4elREUUZaSExFU0lNT3Zpa21X#Social-GPT/agent&Date" frameBorder="0"></iframe>
+## ⭐️ Star history
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Social-GPT/agent&type=Date)](https://star-history.com/#Social-GPT/agent&Date)
