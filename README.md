@@ -18,6 +18,8 @@
 
 In an era where social media is a cornerstone of digital marketing, Social GPT acts as your very own **social media strategist**. By leveraging AI technology, it not only optimizes your social media strategy but also executes it for you, saving you significant time and effort. It takes care of everything from post scheduling to hashtag strategy, all the while learning and adapting to your specific needs.
 
+![image](https://res.cloudinary.com/practicaldev/image/fetch/s--yO2rKtjs--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/dvczkruj06ubry7hxyih.png)
+
 ## ✅ Features
 
 - 💡 Offers **suggestions** according to the provided brand description
