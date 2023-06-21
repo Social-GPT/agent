@@ -1,6 +1,7 @@
 def get_post_style_complement():
     return ', '.join(default_writting_style_definitions)
 
+
 default_writting_style_definitions = [
     "Interpolate emojis",
     "Neutral tone",
@@ -11,7 +12,7 @@ default_writting_style_definitions = [
 ]
 
 writting_style_definitions = [
-    "Interpolate emojis", 
+    "Interpolate emojis",
     "Neutral tone",
     "Interpolate relevant hashtags",
     "No announcements",
