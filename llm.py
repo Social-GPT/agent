@@ -8,6 +8,7 @@ class GenerationItemType(Enum):
     IDEAS = 2
     POST = 3
     IMAGE_PROMPT = 4
+    NEWS_SUMMARY = 5
 
 
 class GenerationMode(Enum):
@@ -67,6 +68,8 @@ class LLM:
                 return LLM.gpt4(prompt)
             else:
                 return LLM.gpt3(prompt)
+        if type == GenerationItemType.NEWS_SUMMARY:
+            return LLM.gpt3(prompt)
 
     @staticmethod
     def request_generation_mode():

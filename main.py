@@ -7,6 +7,7 @@ from generators.instagram_generator import InstagramGenerator
 from generators.linkedin_generator import LinkedInGenerator
 from generators.image_prompt_generator import ImagePromptGenerator
 from generators.image_generator import generate_image_with_hf
+from search.news import search_news_about
 from utils import ask_boolean, prepare_directories
 from brands import Brand
 import os
@@ -27,6 +28,8 @@ def main():
         "\nAny specific request about the style or content of the POSTS?\n") or ""
     generate_images = ask_boolean(
         "\nUse image generation feature (beta)?", False)
+    search_news = ask_boolean(
+        "\nUse DuckDuckGo to search for news (beta)?", False)
     print("\n")
     platforms = inquirer.prompt([inquirer.Checkbox('platforms', message="Which platforms do you want to target?", choices=[
         "Instagram", "Facebook", "Twitter", "LinkedIn"])])['platforms']
@@ -40,7 +43,7 @@ def main():
 
     for topic in topics:
         ideas = IdeaGenerator(
-            brand, ideas_per_topic, topics_ideas_prompt_expansion, mode).generate_ideas(topic)
+            brand, ideas_per_topic, topics_ideas_prompt_expansion, mode, platforms).generate_ideas(topic, search_news)
 
         for idea in ideas:
             if "Twitter" in platforms:

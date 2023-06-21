@@ -1,4 +1,3 @@
-""" Image Generation Module for AutoGPT."""
 import io
 import json
 import time
@@ -8,6 +7,7 @@ import requests
 from PIL import Image
 import os
 from logger import Logger
+
 
 def generate_image_with_hf(prompt: str) -> str:
     hf_api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
@@ -35,7 +35,8 @@ def generate_image_with_hf(prompt: str) -> str:
                 image = Image.open(io.BytesIO(response.content))
                 existing_images = count_files_in_directory("results/images")
                 filename = f"post_{existing_images + 1}.png"
-                Logger.log(f"Generated Image", "Filename: {filename}\nPrompt: {prompt}")
+                Logger.log(f"Generated Image",
+                           "Filename: {filename}\nPrompt: {prompt}")
                 image.save(f"results/images/{filename}")
                 return filename
             except Exception as e:
@@ -50,7 +51,7 @@ def generate_image_with_hf(prompt: str) -> str:
                     time.sleep(delay)
                 else:
                     print(response.text)
-                    
+
             except Exception as e:
                 print(e)
 
