@@ -14,7 +14,7 @@
 
 **Social GPT** is an **Open Source** tool designed to **autonomously strategize and execute your social media campaign**. Using the advanced capabilities of GPT-3 and GPT-4, this AI-driven solution is tailored to streamline your social media management efforts, allowing for effective and efficient engagement with your audience.
 
-https://social-gpt.s3.eu-central-003.backblazeb2.com/static/videos/social-gpt-showcase.mp4
+https://github.com/Social-GPT/agent/assets/81719670/973242ea-3aa6-4487-9d43-e528767cceb5
 
 ## 🤖 Why Social GPT?
 
