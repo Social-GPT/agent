@@ -2,3 +2,4 @@ openai
 requests
 python-inquirer
 langchain
+inquirer
