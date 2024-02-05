@@ -11,7 +11,7 @@ class UnsplashPromptGenerator:
         self.generation_mode = generation_mode
 
     def generate_prompt(self):
-        prompt = f"Based on the following post idea, define one single, broad term that represents a tangible place, object, or thing. The term should be broad, like a state instead of a city, or an animal instead of a breed of an animal:\n\n'{self.post_idea}'\n\nNote: The result should be one word that captures the essence of the post idea in the most universal manner possible."
+        prompt = f"Based on the following post idea, define one single, broad term that represents a tangible place, object, or thing. The term should be broad, but not too broad. Like a state instead of a city, but not country or an animal instead of a breed of an animal but not just the word animal:\n\n'{self.post_idea}'\n\nNote: The result should be one word that captures the essence of the post idea in a general way but not too broad."
         unsplash_prompt = LLM.generate([SystemMessage(
             content=self.brand.description), HumanMessage(content=prompt)], GenerationItemType.IMAGE_PROMPT, self.generation_mode).content
 
