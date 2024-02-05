@@ -8,7 +8,7 @@ import requests
 from PIL import Image
 import os
 from logger import Logger
-
+dd
 
 def generate_image_with_hf(prompt: str) -> str:
     hf_api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
