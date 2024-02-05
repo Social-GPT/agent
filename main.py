@@ -7,6 +7,8 @@ from generators.instagram_generator import InstagramGenerator
 from generators.linkedin_generator import LinkedInGenerator
 from generators.image_prompt_generator import ImagePromptGenerator
 from generators.image_generator import generate_image_with_hf
+from generators.unsplash_prompt_generator import UnsplashPromptGenerator
+from generators.unsplash_grabber import fetch_and_save_images_from_unsplash
 from utils import ask_boolean, prepare_directories
 from brands import Brand
 import os
@@ -62,8 +64,11 @@ def main():
                         brand, idea, mode).generate_prompt()
                     generate_image_with_hf(image_prompt)
                 else:
-                    print(
-                        "🚨 You need to set the HUGGINGFACE_API_TOKEN environment variable to use the image generation feature")
+                    print("⚠️ Using Unsplash as you did not set the HUGGINGFACE_API_TOKEN environment variable for image generation.")
+                    image_prompt = UnsplashPromptGenerator(
+						brand, idea, mode).generate_prompt()
+                    fetch_and_save_images_from_unsplash(image_prompt)
+                    
 
     print('\n\n✅ Done!')
 
