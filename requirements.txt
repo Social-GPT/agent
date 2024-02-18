@@ -1,4 +1,6 @@
 openai
 requests
-python-inquirer
+inquirer
+pillow
 langchain
+langchain-openai

@@ -17,7 +17,7 @@ def format_list(items):
 
 
 def write_to_file(filename, content, mode='w'):
-    with open(filename, mode) as f:
+    with open(filename, mode, encoding="utf-8") as f:
         f.write(content + "\n")
 
 
@@ -40,7 +40,7 @@ def count_separators_in_file(filename, separator):
         count = 0
         if not os.path.exists(filename):
             write_to_file(filename, "")
-        with open(filename, 'r') as f:
+        with open(filename, 'r', encoding="utf-8") as f:
             for line in f:
                 count += line.count(separator)
         return count
